@@ -6,11 +6,13 @@
   <title>Document</title>
 </head>
 <body>
-  {{ search }}
+  <h1 class="Name">
+    {{ title }}
+  </h1>
   <div class="container">
     <div class="input">
       <input name="search" ngModel [(ngModel)]="search" placeholder="Login">
-      <input ngModel [(ngModel)]="search" class="container__input" type="text" placeholder="Введите назание книги или часть ">
+      <input ngModel [(ngModel)]="search" class="container__input" type="text" placeholder="Введите назание книги или её часть ">
       <button class="button_search" (click)="handleSearch()">Найти</button>
     </div>
   </div>

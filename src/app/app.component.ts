@@ -11,8 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'app_prj';
-  search: string = '123123';
+  title = 'Books Searcher';
+  search: string = '';
 
   handleSearch() {
     console.log(123)

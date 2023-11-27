@@ -7,7 +7,7 @@
 
     .input {
         display: inline-flex;
-        gap: 20px;
+        gap: 35px;
 
         .button_search {
             background-color: green;
@@ -23,4 +23,8 @@
             height: 30px;
         }
     }
+}
+.Name {
+    color: white;
+    text-align: center;
 }

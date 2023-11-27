@@ -1,0 +1,26 @@
+.container {
+    display: flexbox;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+    text-align: center;
+
+    .input {
+        display: inline-flex;
+        gap: 20px;
+
+        .button_search {
+            background-color: green;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        input {
+            width: 250px;
+            height: 30px;
+        }
+    }
+}

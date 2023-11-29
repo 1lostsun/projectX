@@ -1,0 +1,12 @@
+.container {
+    display: flexbox;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
+    text-align: center;
+
+    .input {
+        display: inline-flex;
+        gap: 35px;
+    }
+}

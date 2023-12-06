@@ -3,18 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GoogleBooksAPI } from "google-books-js";
-
-type Book = {
-  volumeInfo: {
-    title: string,
-    description?: string,
-    imageLinks?: {
-      thumbnail?: string,
-      smallThumbnail?: string
-    },
-    previewLink: string
-  }
-}
+import { Book } from '../types/book.type';
 
 @Component({
   selector: 'app-storage',
@@ -29,20 +18,31 @@ export class StorageComponent implements OnInit {
   items: Array<Book> | any = [];
   googleBooksApi = new GoogleBooksAPI();
 
-  constructor (private localServise: LocalService) {}
+  constructor (private localService: LocalService) {}
 
   ngOnInit(): void {
     this.items = [];
 
-    const storage: any = this.localServise.getData('booksStorage');
+    const storage: any = this.localService.getData('booksStorage');
     const currentStorage = JSON.parse(storage) || [];
     
     for (const bookId of currentStorage) {
-      const book = this.googleBooksApi.getVolume(bookId);
-      console.log(book)
-      //if (!book) continue;
-
-      //this.items.push(book);
+      const book: any  = this.googleBooksApi.getVolume(bookId);
+      book.then((res: any)  => {
+        this.items.push(res)
+      });
     }
+  }
+
+  remove(bookId: string) {
+    const storage: any = this.localService.getData('booksStorage');
+    const currentStorage = JSON.parse(storage) || [];
+    if (!currentStorage.length) return;
+    if (!currentStorage.some((item: string) => item === bookId)) return;
+
+    const updatedStorage = currentStorage.filter((item: string) => item !== bookId);
+    this.items = this.items.filter((item: Book) => item.id !== bookId);
+
+    this.localService.saveData('booksStorage', JSON.stringify(updatedStorage));
   }
 }

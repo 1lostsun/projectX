@@ -43,7 +43,7 @@ export class HomeComponent {
     const currentStorage = JSON.parse(storage) || [];
     console.log(currentStorage);
 
-    if (currentStorage.length && currentStorage.same((item: string) => item === bookId)) return;
+    if (currentStorage.length && currentStorage.some((item: string) => item === bookId)) return;
 
     currentStorage.push(bookId);
 

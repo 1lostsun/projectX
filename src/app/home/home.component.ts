@@ -14,7 +14,7 @@ import { Book } from '../types/book.type';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  title = 'Books Searcher';
+  title = 'Read Sphere';
   search = new FormControl('');
   currentSearch: string | null = null;
   items: any = [];
@@ -25,7 +25,7 @@ export class HomeComponent {
   async handleSearch() {
     console.log(this.search.value);
     if (this.currentSearch === this.search.value) return;
-
+    
     const result = await this.googleBooksApi.search({
       filters: {
         title: this.search.value || '',
@@ -38,6 +38,10 @@ export class HomeComponent {
     console.log(result);
   }
 
+  /*
+  async handleSearch() - Эта функция отвечает за обработку поискового запроса. 
+  Она получает значение поискового запроса из формы поиска и передает его в функцию googleBooksApi.search().
+  */
   async addToStorage(bookId: string) {
     const storage: any = this.localService.getData('booksStorage');
     const currentStorage = JSON.parse(storage) || [];
@@ -49,4 +53,7 @@ export class HomeComponent {
 
     this.localService.saveData('booksStorage', JSON.stringify(currentStorage));
   }
-}
+/*
+addToStorage(bookId) - Эта функция добавляет книгу с указанным bookId в локальное хранилище приложения. 
+Она также использует асинхронный подход с помощью async/await.
+*/}
